@@ -2,55 +2,144 @@
 <html>
 <head>
     <title>Formulario de Predicción</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #f4f6fb;
+        }
+        .header {
+            background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+            color: white;
+            padding: 40px 0 30px 0;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(78,84,200,0.1);
+        }
+        .container {
+            background: white;
+            max-width: 420px;
+            margin: -30px auto 0 auto;
+            border-radius: 16px;
+            box-shadow: 0 4px 24px rgba(78,84,200,0.13);
+            padding: 32px 32px 24px 32px;
+        }
+        h2 {
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        label {
+            font-weight: 500;
+            margin-bottom: 4px;
+        }
+        input[type="number"], select {
+            padding: 8px 10px;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1em;
+            background: #f8f9fd;
+            transition: border 0.2s;
+        }
+        input[type="number"]:focus, select:focus {
+            border: 1.5px solid #4e54c8;
+            outline: none;
+        }
+        input[type="submit"] {
+            background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 12px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+        input[type="submit"]:hover {
+            background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+        }
+        .resultado {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 1.15em;
+            font-weight: 500;
+            color: #4e54c8;
+        }
+    </style>
 </head>
 <body>
-    <h2>Predicción de Enfermedad Cardíaca</h2>
-    <form method="post">
-        Edad: <input type="number" name="Age" required><br><br>
-        Sexo: 
-        <select name="Sex">
-            <option value="M">M</option>
-            <option value="F">F</option>
-        </select><br><br>
-        Tipo de dolor en el pecho:
-        <select name="ChestPainType">
-            <option value="ATA">ATA</option>
-            <option value="NAP">NAP</option>
-            <option value="ASY">ASY</option>
-            <option value="TA">TA</option>
-        </select><br><br>
-        Presión en reposo: <input type="number" name="RestingBP" required><br><br>
-        Colesterol: <input type="number" name="Cholesterol" required><br><br>
-        Azúcar en ayunas (FastingBS):
-        <select name="FastingBS">
-            <option value="0">0</option>
-            <option value="1">1</option>
-        </select><br><br>
-        Electrocardiograma:
-        <select name="RestingECG">
-            <option value="Normal">Normal</option>
-            <option value="ST">ST</option>
-            <option value="LVH">LVH</option>
-        </select><br><br>
-        Frecuencia cardíaca máxima: <input type="number" name="MaxHR" required><br><br>
-        Angina inducida por ejercicio:
-        <select name="ExerciseAngina">
-            <option value="N">No</option>
-            <option value="Y">Sí</option>
-        </select><br><br>
-        Oldpeak: <input type="number" step="any" name="Oldpeak" required><br><br>
-        ST Slope:
-        <select name="ST_Slope">
-            <option value="Up">Up</option>
-            <option value="Flat">Flat</option>
-            <option value="Down">Down</option>
-        </select><br><br>
+    <div class="header">
+        <h2>Predicción de Enfermedad Cardíaca</h2>
+        <p>Completa el formulario para conocer el resultado</p>
+    </div>
+    <div class="container">
+        <form method="post">
+            <label>Edad:</label>
+            <input type="number" name="Age" required>
 
-        <input type="submit" value="Predecir">
-    </form>
+            <label>Sexo:</label>
+            <select name="Sex">
+                <option value="M">Masculino</option>
+                <option value="F">Femenino</option>
+            </select>
 
-    {% if prediccion %}
-        <h3>Resultado: {{ prediccion }}</h3>
-    {% endif %}
+            <label>Tipo de dolor en el pecho:</label>
+            <select name="ChestPainType">
+                <option value="ATA">ATA</option>
+                <option value="NAP">NAP</option>
+                <option value="ASY">ASY</option>
+                <option value="TA">TA</option>
+            </select>
+
+            <label>Presión en reposo:</label>
+            <input type="number" name="RestingBP" required>
+
+            <label>Colesterol:</label>
+            <input type="number" name="Cholesterol" required>
+
+            <label>Azúcar en ayunas (FastingBS):</label>
+            <select name="FastingBS">
+                <option value="0">0</option>
+                <option value="1">1</option>
+            </select>
+
+            <label>Electrocardiograma:</label>
+            <select name="RestingECG">
+                <option value="Normal">Normal</option>
+                <option value="ST">ST</option>
+                <option value="LVH">LVH</option>
+            </select>
+
+            <label>Frecuencia cardíaca máxima:</label>
+            <input type="number" name="MaxHR" required>
+
+            <label>Angina inducida por ejercicio:</label>
+            <select name="ExerciseAngina">
+                <option value="N">No</option>
+                <option value="Y">Sí</option>
+            </select>
+
+            <label>Oldpeak:</label>
+            <input type="number" step="any" name="Oldpeak" required>
+
+            <label>ST Slope:</label>
+            <select name="ST_Slope">
+                <option value="Up">Up</option>
+                <option value="Flat">Flat</option>
+                <option value="Down">Down</option>
+            </select>
+
+            <input type="submit" value="Predecir">
+        </form>
+        {% if prediccion %}
+            <div class="resultado">Resultado: {{ prediccion }}</div>
+        {% endif %}
+    </div>
 </body>
 </html>
