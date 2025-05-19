@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Formulario de Predicción</title>
+</head>
+<body>
+    <h2>Predicción de Enfermedad Cardíaca</h2>
+    <form method="post">
+        Edad: <input type="number" name="Age" required><br><br>
+        Sexo: 
+        <select name="Sex">
+            <option value="M">M</option>
+            <option value="F">F</option>
+        </select><br><br>
+        Tipo de dolor en el pecho:
+        <select name="ChestPainType">
+            <option value="ATA">ATA</option>
+            <option value="NAP">NAP</option>
+            <option value="ASY">ASY</option>
+            <option value="TA">TA</option>
+        </select><br><br>
+        Presión en reposo: <input type="number" name="RestingBP" required><br><br>
+        Colesterol: <input type="number" name="Cholesterol" required><br><br>
+        Azúcar en ayunas (FastingBS):
+        <select name="FastingBS">
+            <option value="0">0</option>
+            <option value="1">1</option>
+        </select><br><br>
+        Electrocardiograma:
+        <select name="RestingECG">
+            <option value="Normal">Normal</option>
+            <option value="ST">ST</option>
+            <option value="LVH">LVH</option>
+        </select><br><br>
+        Frecuencia cardíaca máxima: <input type="number" name="MaxHR" required><br><br>
+        Angina inducida por ejercicio:
+        <select name="ExerciseAngina">
+            <option value="N">No</option>
+            <option value="Y">Sí</option>
+        </select><br><br>
+        Oldpeak: <input type="number" step="any" name="Oldpeak" required><br><br>
+        ST Slope:
+        <select name="ST_Slope">
+            <option value="Up">Up</option>
+            <option value="Flat">Flat</option>
+            <option value="Down">Down</option>
+        </select><br><br>
+
+        <input type="submit" value="Predecir">
+    </form>
+
+    {% if prediccion %}
+        <h3>Resultado: {{ prediccion }}</h3>
+    {% endif %}
+</body>
+</html>
