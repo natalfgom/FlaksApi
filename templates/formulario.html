@@ -1,145 +1,361 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Formulario de Predicción</title>
+    <title>Predicción de Enfermedad Cardíaca</title>
     <style>
+        :root {
+            --primary-gradient: linear-gradient(135deg, #ff9a44 0%, #fc6076 100%);
+            --secondary-gradient: linear-gradient(135deg, #ffd194 0%, #ff9a44 100%);
+        }
+
         body {
-            margin: 0;
             font-family: 'Segoe UI', Arial, sans-serif;
-            background: #f4f6fb;
-        }
-        .header {
-            background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
-            color: white;
-            padding: 40px 0 30px 0;
-            text-align: center;
-            box-shadow: 0 2px 8px rgba(78,84,200,0.1);
-        }
-        .container {
-            background: white;
-            max-width: 420px;
-            margin: -30px auto 0 auto;
-            border-radius: 16px;
-            box-shadow: 0 4px 24px rgba(78,84,200,0.13);
-            padding: 32px 32px 24px 32px;
-        }
-        h2 {
-            margin: 0 0 10px 0;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-        form {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 16px;
+            background-color: #f8f9fa;
         }
-        label {
-            font-weight: 500;
-            margin-bottom: 4px;
-        }
-        input[type="number"], select {
-            padding: 8px 10px;
-            border: 1px solid #d1d5db;
-            border-radius: 6px;
-            font-size: 1em;
-            background: #f8f9fd;
-            transition: border 0.2s;
-        }
-        input[type="number"]:focus, select:focus {
-            border: 1.5px solid #4e54c8;
-            outline: none;
-        }
-        input[type="submit"] {
-            background: linear-gradient(90deg, #4e54c8 0%, #8f94fb 100%);
+
+        .header {
+            background: var(--primary-gradient);
             color: white;
-            border: none;
-            border-radius: 6px;
+            padding: 2rem 0;
+            text-align: center;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.1);
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+            flex: 1;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #2c3e50;
+        }
+
+        input, select {
+            width: 100%;
             padding: 12px;
-            font-size: 1.1em;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #f8f9fa;
+        }
+
+        input:focus, select:focus {
+            outline: none;
+            border-color: #ff9a44;
+            box-shadow: 0 0 0 3px rgba(255, 154, 68, 0.1);
+        }
+
+        button {
+            background: var(--secondary-gradient);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.1rem;
             font-weight: 600;
             cursor: pointer;
-            margin-top: 10px;
-            transition: background 0.2s;
+            transition: all 0.3s ease;
+            width: 100%;
+            margin-top: 1rem;
         }
-        input[type="submit"]:hover {
-            background: linear-gradient(90deg, #8f94fb 0%, #4e54c8 100%);
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 154, 68, 0.3);
         }
-        .resultado {
-            margin-top: 24px;
+
+        .result {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            border-radius: 8px;
             text-align: center;
-            font-size: 1.15em;
+            font-size: 1.1rem;
             font-weight: 500;
-            color: #4e54c8;
+        }
+
+        .positive {
+            background: linear-gradient(135deg, #ff9a44 0%, #fc6076 100%);
+            color: white;
+        }
+
+        .negative {
+            background: linear-gradient(135deg, #43cea2 0%, #185a9d 100%);
+            color: white;
+        }
+
+        .footer {
+            background: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 1rem 0;
+            margin-top: auto;
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+
+        .instructions {
+            background: #fff3e0;
+            border-left: 4px solid #ff9a44;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .instructions h2 {
+            color: #e65100;
+            margin-top: 0;
+            margin-bottom: 1rem;
+        }
+
+        .instructions p {
+            margin: 0.5rem 0;
+            color: #424242;
+        }
+
+        .instructions ul {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .instructions li {
+            margin: 0.5rem 0;
+            color: #424242;
+        }
+
+        .variable-explanation {
+            background: #f5f5f5;
+            padding: 0.5rem;
+            border-radius: 4px;
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .important-variables {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+        }
+
+        .important-variables h3 {
+            margin-top: 0;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .important-variables ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .important-variables li {
+            margin: 0.5rem 0;
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 4px;
         }
     </style>
 </head>
 <body>
     <div class="header">
-        <h2>Predicción de Enfermedad Cardíaca</h2>
-        <p>Completa el formulario para conocer el resultado</p>
+        <h1>Predicción de Enfermedad Cardíaca</h1>
     </div>
+
     <div class="container">
-        <form method="post">
-            <label>Edad:</label>
-            <input type="number" name="Age" required>
+        <div class="instructions">
+            <h2>Instrucciones</h2>
+            <p>Por favor, complete todos los campos del formulario con la información médica del paciente. Los campos marcados con * son obligatorios.</p>
+            
+            <h3>Variables que requieren explicación:</h3>
+            <ul>
+                <li>
+                    <strong>Tipo de Dolor en el Pecho (ChestPainType):</strong>
+                    <div class="variable-explanation">
+                        - ATA (Angina Típica): Dolor opresivo en el pecho que se irradia al brazo izquierdo<br>
+                        - NAP (Angina No Típica): Dolor atípico en el pecho<br>
+                        - ASY (Asintomático): Sin dolor en el pecho<br>
+                        - TA (Angina Atípica): Dolor en el pecho con características no típicas
+                    </div>
+                </li>
+                <li>
+                    <strong>Electrocardiograma en Reposo (RestingECG):</strong>
+                    <div class="variable-explanation">
+                        - Normal: ECG normal<br>
+                        - ST: Anomalías en el segmento ST<br>
+                        - LVH: Hipertrofia ventricular izquierda
+                    </div>
+                </li>
+                <li>
+                    <strong>Depresión ST (Oldpeak):</strong>
+                    <div class="variable-explanation">
+                        Medida de la depresión del segmento ST inducida por el ejercicio en relación con el reposo. Valores típicos entre -2.5 y 2.5.
+                    </div>
+                </li>
+                <li>
+                    <strong>Pendiente ST (ST_Slope):</strong>
+                    <div class="variable-explanation">
+                        - Ascendente: Pendiente positiva del segmento ST<br>
+                        - Plana: Segmento ST horizontal<br>
+                        - Descendente: Pendiente negativa del segmento ST
+                    </div>
+                </li>
+            </ul>
+            <p><strong>Nota:</strong> Todos los valores numéricos deben estar dentro de los rangos especificados para cada campo.</p>
+        </div>
 
-            <label>Sexo:</label>
-            <select name="Sex">
-                <option value="M">Masculino</option>
-                <option value="F">Femenino</option>
-            </select>
+        <form method="POST">
+            <div class="form-group">
+                <label for="Age">Edad:</label>
+                <input type="number" id="Age" name="Age" required min="0" max="120" placeholder="Ingrese la edad">
+            </div>
 
-            <label>Tipo de dolor en el pecho:</label>
-            <select name="ChestPainType">
-                <option value="ATA">ATA</option>
-                <option value="NAP">NAP</option>
-                <option value="ASY">ASY</option>
-                <option value="TA">TA</option>
-            </select>
+            <div class="form-group">
+                <label for="Sex">Sexo:</label>
+                <select id="Sex" name="Sex" required>
+                    <option value="M">Masculino</option>
+                    <option value="F">Femenino</option>
+                </select>
+            </div>
 
-            <label>Presión en reposo:</label>
-            <input type="number" name="RestingBP" required>
+            <div class="form-group">
+                <label for="ChestPainType">Tipo de Dolor en el Pecho:</label>
+                <select id="ChestPainType" name="ChestPainType" required>
+                    <option value="ATA">Angina Típica</option>
+                    <option value="NAP">Angina No Típica</option>
+                    <option value="ASY">Asintomático</option>
+                    <option value="TA">Angina Atípica</option>
+                </select>
+            </div>
 
-            <label>Colesterol:</label>
-            <input type="number" name="Cholesterol" required>
+            <div class="form-group">
+                <label for="RestingBP">Presión Arterial en Reposo (mmHg):</label>
+                <input type="number" id="RestingBP" name="RestingBP" required min="0" max="300" placeholder="Ej: 120">
+            </div>
 
-            <label>Azúcar en ayunas (FastingBS):</label>
-            <select name="FastingBS">
-                <option value="0">0</option>
-                <option value="1">1</option>
-            </select>
+            <div class="form-group">
+                <label for="Cholesterol">Colesterol (mg/dl):</label>
+                <input type="number" id="Cholesterol" name="Cholesterol" required min="0" max="700" placeholder="Ej: 200">
+            </div>
 
-            <label>Electrocardiograma:</label>
-            <select name="RestingECG">
-                <option value="Normal">Normal</option>
-                <option value="ST">ST</option>
-                <option value="LVH">LVH</option>
-            </select>
+            <div class="form-group">
+                <label for="FastingBS">Glucosa en Ayunas > 120 mg/dl:</label>
+                <select id="FastingBS" name="FastingBS" required>
+                    <option value="0">No</option>
+                    <option value="1">Sí</option>
+                </select>
+            </div>
 
-            <label>Frecuencia cardíaca máxima:</label>
-            <input type="number" name="MaxHR" required>
+            <div class="form-group">
+                <label for="RestingECG">Electrocardiograma en Reposo:</label>
+                <select id="RestingECG" name="RestingECG" required>
+                    <option value="Normal">Normal</option>
+                    <option value="ST">Anomalía ST-T</option>
+                    <option value="LVH">Hipertrofia Ventricular Izquierda</option>
+                </select>
+            </div>
 
-            <label>Angina inducida por ejercicio:</label>
-            <select name="ExerciseAngina">
-                <option value="N">No</option>
-                <option value="Y">Sí</option>
-            </select>
+            <div class="form-group">
+                <label for="MaxHR">Frecuencia Cardíaca Máxima:</label>
+                <input type="number" id="MaxHR" name="MaxHR" required min="0" max="250" placeholder="Ej: 150">
+            </div>
 
-            <label>Oldpeak:</label>
-            <input type="number" step="any" name="Oldpeak" required>
+            <div class="form-group">
+                <label for="ExerciseAngina">Angina por Ejercicio:</label>
+                <select id="ExerciseAngina" name="ExerciseAngina" required>
+                    <option value="N">No</option>
+                    <option value="Y">Sí</option>
+                </select>
+            </div>
 
-            <label>ST Slope:</label>
-            <select name="ST_Slope">
-                <option value="Up">Up</option>
-                <option value="Flat">Flat</option>
-                <option value="Down">Down</option>
-            </select>
+            <div class="form-group">
+                <label for="Oldpeak">Depresión ST:</label>
+                <input type="number" id="Oldpeak" name="Oldpeak" required step="0.1" min="-10" max="10" placeholder="Ej: 0.0">
+            </div>
 
-            <input type="submit" value="Predecir">
+            <div class="form-group">
+                <label for="ST_Slope">Pendiente ST:</label>
+                <select id="ST_Slope" name="ST_Slope" required>
+                    <option value="Up">Ascendente</option>
+                    <option value="Flat">Plana</option>
+                    <option value="Down">Descendente</option>
+                </select>
+            </div>
+
+            <button type="submit">Realizar Predicción</button>
         </form>
-        {% if prediccion %}
-            <div class="resultado">Resultado: {{ prediccion }}</div>
+
+        {% if prediction is defined %}
+        <div class="result {% if prediction == 1 %}positive{% else %}negative{% endif %}">
+            <h2>Resultado de la Predicción:</h2>
+            <p>
+                {% if prediction == 1 %}
+                Hay una alta probabilidad de enfermedad cardíaca.
+                {% else %}
+                La probabilidad de enfermedad cardíaca es baja.
+                {% endif %}
+            </p>
+
+            {% if important_vars %}
+            <div class="important-variables">
+                <h3>Variables más influyentes en esta predicción:</h3>
+                <ul>
+                    {% for var in important_vars %}
+                    <li>
+                        <strong>{{ var.name }}</strong>: 
+                        Influencia {{ var.direction }} 
+                        (Importancia: {{ "%.2f"|format(var.importance) }})
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            {% endif %}
+        </div>
         {% endif %}
+    </div>
+
+    <div class="footer">
+        <p>Minería de Datos Clínicos © 2025</p>
     </div>
 </body>
 </html>
